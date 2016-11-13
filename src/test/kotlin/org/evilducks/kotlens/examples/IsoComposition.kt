@@ -18,5 +18,8 @@ class IsoComposition() {
     @Test fun `composing isomorphisms`() {
         val kmToMile = meterToKm.reverse() combine meterToYard combine yardToMile
         assertThat(kmToMile.get(Kilometer(10.0)), equalTo(Mile(6.213693181818182E-6)))
+
+        val yardToYard = meterToYard.reverse() combine meterToKm combine kmToMile combine yardToMile.reverse()
+        assertThat(yardToYard.get(Yard(1.0)), equalTo(Yard(1.0)))
     }
 }
