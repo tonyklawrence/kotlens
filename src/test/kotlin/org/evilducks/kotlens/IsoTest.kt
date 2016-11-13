@@ -14,6 +14,14 @@ class IsoTest {
         assertThat(iso.get(iso.reverseGet("Anything")), equalTo("Anything"))
     }
 
+    @Test fun `modification via iso should be the same as without`() {
+        val iso = Iso(String::toInt, Int::toString)
+        val f = { n: Int -> n + 1 }
+
+        val x = "10"
+        assertThat(iso.modify(f)(x), equalTo(iso.reverseGet(f(iso.get(x)))))
+    }
+
     @Test fun `we can reverse an iso`() {
         val iso = Iso(String::toInt, Int::toString)
         val reversed = iso.reverse()
