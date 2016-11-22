@@ -33,7 +33,7 @@ class IsoTest {
     @Test fun `isomorphism is composable`() {
         val a2b = Iso(String::toInt, Int::toString)
         val b2c = Iso(Int::toDouble, Double::toInt)
-        val a2c = a2b.combine(b2c)
+        val a2c = a2b.compose(b2c)
 
         assertThat(a2c.get("100"), equalTo(100.0))
         assertThat(a2c.reverseGet(100.0), equalTo("100"))

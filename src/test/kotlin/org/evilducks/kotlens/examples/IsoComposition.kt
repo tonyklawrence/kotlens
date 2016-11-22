@@ -16,10 +16,10 @@ class IsoComposition() {
     val yardToMile = Iso<Yard, Mile>({ (y) -> Mile(y / 1760) }, { (m) -> Yard(m * 1760) })
 
     @Test fun `composing isomorphisms`() {
-        val kmToMile = meterToKm.reverse() combine meterToYard combine yardToMile
+        val kmToMile = meterToKm.reverse() compose meterToYard compose yardToMile
         assertThat(kmToMile.get(Kilometer(10.0)), equalTo(Mile(6.213693181818182E-6)))
 
-        val yardToYard = meterToYard.reverse() combine meterToKm combine kmToMile combine yardToMile.reverse()
+        val yardToYard = meterToYard.reverse() compose meterToKm compose kmToMile compose yardToMile.reverse()
         assertThat(yardToYard.get(Yard(1.0)), equalTo(Yard(1.0)))
     }
 }
