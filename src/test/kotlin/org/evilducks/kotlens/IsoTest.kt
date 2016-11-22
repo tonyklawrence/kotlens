@@ -31,10 +31,10 @@ class IsoTest {
         reversed.get(100) shouldMatch equalTo("100")
     }
 
-    @Test fun `isomorphism is composable`() {
+    @Test fun `isomorphisms can be composed`() {
         val a2b = Iso(String::toInt, Int::toString)
         val b2c = Iso(Int::toDouble, Double::toInt)
-        val a2c = a2b.compose(b2c)
+        val a2c = a2b compose b2c
 
         a2c.get("100") shouldMatch equalTo(100.0)
         a2c.reverseGet(100.0) shouldMatch equalTo("100")

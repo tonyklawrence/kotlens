@@ -30,6 +30,20 @@ class PrismTest() {
         prism.modifyOption(double)("no") shouldMatch absent()
     }
 
+    @Test fun `prisms can be composed`() {
+        val a2b = Prism({ it.toDoubleOption() }, Double::toString)
+        val b2c = Prism({ it.toIntOption() }, Int::toDouble)
+        val a2c = a2b compose b2c
+
+        a2c.getOption("100.0") shouldMatch equalTo(100)
+        a2c.reverseGet(100) shouldMatch equalTo("100.0")
+        a2c.modify(double)("3.0") shouldMatch equalTo("6.0")
+        a2c.modify(double)("oops") shouldMatch equalTo("oops")
+        a2c.modify(double)("1.23") shouldMatch equalTo("1.23")
+    }
+
     private val double: (Int) -> Int = { it * 2 }
+    private fun Double.toIntOption(): Int? = if (this == toInt().toDouble()) toInt() else null
     private fun String.toIntOption(): Int? = Try { toInt() }.toOption()
+    private fun String.toDoubleOption(): Double? = Try { toDouble() }.toOption()
 }
