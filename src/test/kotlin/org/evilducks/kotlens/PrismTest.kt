@@ -3,6 +3,7 @@ package org.evilducks.kotlens
 import com.natpryce.hamkrest.absent
 import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.should.shouldMatch
+import org.evilducks.kotlens.Kotlens.compose
 import org.junit.Test
 
 class PrismTest() {
@@ -40,6 +41,16 @@ class PrismTest() {
         a2c.modify(double)("3.0") shouldMatch equalTo("6.0")
         a2c.modify(double)("oops") shouldMatch equalTo("oops")
         a2c.modify(double)("1.23") shouldMatch equalTo("1.23")
+    }
+
+    @Test fun `can compose a prism with an iso`() {
+        val a2b = Prism({ it.toDoubleOption() }, Double::toString)
+        val b2c = Iso(Double::toInt, Int::toDouble)
+        val a2c = a2b compose b2c
+
+        a2c.getOption("100.0") shouldMatch equalTo(100)
+        a2c.reverseGet(100) shouldMatch equalTo("100.0")
+        a2c.modify(double)("1.23") shouldMatch equalTo("2.0")
     }
 
     private val double: (Int) -> Int = { it * 2 }
