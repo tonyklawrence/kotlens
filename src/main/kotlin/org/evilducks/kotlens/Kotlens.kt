@@ -14,7 +14,7 @@ class Prism<S, A>(val getOption: (S) -> A?, val reverseGet: (A) -> S) {
     fun modify(ƒ: (A) -> A): (S) -> S = todo()
     fun modifyOption(ƒ: (A) -> A): (S) -> S? = todo()
     infix fun <B> compose(other: Prism<A, B>): Prism<S, B> = todo()
-    infix fun <B> compose(other: Iso<A, B>): Prism<S, B> = todo() // extension?
+    infix fun <B> compose(other: Iso<A, B>): Prism<S, B> = todo() // via extension?
 }
 
 fun Any.todo(): Nothing = throw NotImplementedError(this.toString())

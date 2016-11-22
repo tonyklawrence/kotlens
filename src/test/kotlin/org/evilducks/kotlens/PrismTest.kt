@@ -1,16 +1,19 @@
 package org.evilducks.kotlens
 
-import org.hamcrest.CoreMatchers.equalTo
-import org.junit.Assert.assertThat
+import com.natpryce.hamkrest.absent
+import com.natpryce.hamkrest.equalTo
+import com.natpryce.hamkrest.should.shouldMatch
 import org.junit.Test
 
 class PrismTest() {
 
     @Test fun prism() {
-        val prism = Prism({ Try{ it.toInt() }.toOption() }, Int::toString)
+        val prism = Prism({ it.toIntOption() }, Int::toString)
 
-        assertThat(prism.getOption("100"), equalTo(100))
-        prism.getOption("nan")
-        assertThat(prism.getOption(prism.reverseGet(100)), equalTo(100))
+        prism.getOption("100") shouldMatch equalTo(100)
+        prism.getOption("nan") shouldMatch absent()
+        prism.getOption(prism.reverseGet(100)) shouldMatch equalTo(100)
     }
+
+    private fun String.toIntOption(): Int? = Try { toInt() }.toOption()
 }
