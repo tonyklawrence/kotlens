@@ -10,7 +10,7 @@ data class Yard(val value: Double)
 data class Kilometer(val value: Double)
 data class Mile(val value: Double)
 
-class IsoComposition() {
+class Isomorphisms() {
     val meterToYard = Iso<Meter, Yard>({ (m) -> Yard(m * 1.09361) }, { (y) -> Meter(y / 1.09361) })
     val meterToKm = Iso<Meter, Kilometer>({ (m) -> Kilometer(m * 1000) }, { (km) -> Meter(km / 1000) })
     val yardToMile = Iso<Yard, Mile>({ (y) -> Mile(y / 1760) }, { (m) -> Yard(m * 1760) })
