@@ -7,7 +7,7 @@ import org.evilducks.kotlens.Kotlens.compose
 import org.junit.Test
 
 class PrismTest() {
-    val prism = Prism({ it.toIntOption() }, Int::toString)
+    val prism = Prism(String::toIntOption, Int::toString)
 
     @Test fun prism() {
         prism.getOption("100") shouldMatch equalTo(100)
@@ -32,8 +32,8 @@ class PrismTest() {
     }
 
     @Test fun `prisms can be composed`() {
-        val a2b = Prism({ it.toDoubleOption() }, Double::toString)
-        val b2c = Prism({ it.toIntOption() }, Int::toDouble)
+        val a2b = Prism(String::toDoubleOption, Double::toString)
+        val b2c = Prism(Double::toIntOption, Int::toDouble)
         val a2c = a2b compose b2c
 
         a2c.getOption("100.0") shouldMatch equalTo(100)
@@ -44,7 +44,7 @@ class PrismTest() {
     }
 
     @Test fun `can compose a prism with an iso`() {
-        val a2b = Prism({ it.toDoubleOption() }, Double::toString)
+        val a2b = Prism(String::toDoubleOption, Double::toString)
         val b2c = Iso(Double::toInt, Int::toDouble)
         val a2c = a2b compose b2c
 
@@ -54,7 +54,4 @@ class PrismTest() {
     }
 
     private val double: (Int) -> Int = { it * 2 }
-    private fun Double.toIntOption(): Int? = if (this == toInt().toDouble()) toInt() else null
-    private fun String.toIntOption(): Int? = Try { toInt() }.toOption()
-    private fun String.toDoubleOption(): Double? = Try { toDouble() }.toOption()
 }

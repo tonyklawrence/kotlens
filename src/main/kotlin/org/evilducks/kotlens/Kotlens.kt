@@ -20,9 +20,10 @@ class Prism<S, A>(val getOption: (S) -> A?, val reverseGet: (A) -> S) {
 }
 
 object Kotlens {
-    infix fun <S, A, B> Prism<S, A>.compose(other: Iso<A, B>): Prism<S, B> = Prism(
-            getOption = { s -> getOption(s)?.let { a -> other.get(a) } },
-            reverseGet = { b -> reverseGet(other.reverseGet(b)) })
+    fun <S, A> Iso<S, A>.toPrism(): Prism<S, A> = Prism(getOption = get, reverseGet = reverseGet)
+
+    infix fun <S ,A, B> Iso<S, A>.compose(other: Prism<A, B>): Prism<S, B> = toPrism() compose other
+    infix fun <S, A, B> Prism<S, A>.compose(other: Iso<A, B>): Prism<S, B> = this compose other.toPrism()
 }
 
 fun Any.todo(): Nothing = throw NotImplementedError(this.toString())
