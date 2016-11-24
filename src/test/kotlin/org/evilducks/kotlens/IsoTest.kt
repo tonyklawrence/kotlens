@@ -10,7 +10,6 @@ class IsoTest {
         val iso = Iso(String::reversed, String::reversed)
 
         iso.get("String") shouldMatch equalTo("gnirtS")
-        iso.get("String") shouldMatch  equalTo("gnirtS")
         iso.reverseGet(iso.get("String")) shouldMatch equalTo("String")
         iso.get(iso.reverseGet("Anything")) shouldMatch equalTo("Anything")
     }

@@ -6,7 +6,7 @@ import com.natpryce.hamkrest.should.shouldMatch
 import org.evilducks.kotlens.Kotlens.compose
 import org.junit.Test
 
-class PrismTest() {
+class PrismTest {
     val prism = Prism(String::toIntOption, Int::toString)
 
     @Test fun prism() {
