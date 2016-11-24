@@ -9,7 +9,7 @@ data class Iso<S, A>(val get: (S) -> A, val reverseGet: (A) -> S) {
     )
 }
 
-class Prism<S, A>(val getOption: (S) -> A?, val reverseGet: (A) -> S) {
+data class Prism<S, A>(val getOption: (S) -> A?, val reverseGet: (A) -> S) {
     fun isMatching(s: S): Boolean = getOption(s) != null
     fun modify(ƒ: (A) -> A): (S) -> S = { s -> modifyOption(ƒ)(s) ?: s }
     fun modifyOption(ƒ: (A) -> A): (S) -> S? = { s -> getOption(s)?.let { a -> reverseGet(ƒ(a)) } }
@@ -19,14 +19,19 @@ class Prism<S, A>(val getOption: (S) -> A?, val reverseGet: (A) -> S) {
     )
 }
 
+data class Lens<S, A>(val get: (S) -> A, val set: (A, S) -> S) {
+    fun modify(ƒ: (A) -> A): (S) -> S = { s -> set(ƒ(get(s)), s) }
+}
+
 object Kotlens {
     fun <S, A> Iso<S, A>.toPrism(): Prism<S, A> = Prism(getOption = get, reverseGet = reverseGet)
+    fun <S, A> Iso<S, A>.toLens(): Lens<S, A> = Lens(get = get, set = { a, s -> reverseGet(a) })
 
     infix fun <S ,A, B> Iso<S, A>.compose(other: Prism<A, B>): Prism<S, B> = toPrism() compose other
     infix fun <S, A, B> Prism<S, A>.compose(other: Iso<A, B>): Prism<S, B> = this compose other.toPrism()
 }
 
-fun Any.todo(): Nothing = throw NotImplementedError(this.toString())
+val todo: Nothing = throw NotImplementedError()
 
 class Try<out T>(val ƒ: () -> T) {
     fun toOption(): T? = try { ƒ() } catch (t: Throwable) { null }
