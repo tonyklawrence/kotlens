@@ -3,6 +3,7 @@ package kotlens
 import com.natpryce.hamkrest.absent
 import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.should.shouldMatch
+import kotlens.Transformers.compose
 import org.junit.Test
 
 class PrismTest {

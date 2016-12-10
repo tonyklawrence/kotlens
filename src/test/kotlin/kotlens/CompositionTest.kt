@@ -3,7 +3,7 @@ package kotlens
 import com.natpryce.hamkrest.absent
 import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.should.shouldMatch
-import kotlens.Kotlens.compose
+import kotlens.Transformers.compose
 import org.junit.Test
 
 class CompositionTest {
