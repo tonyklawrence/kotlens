@@ -1,4 +1,4 @@
-package org.evilducks.kotlens
+package org.kotlens
 
 fun Double.toIntOption(): Int? = if (this == toInt().toDouble()) toInt() else null
 fun String.toIntOption(): Int? = Try { toInt() }.toOption()

@@ -1,4 +1,4 @@
-package org.evilducks.kotlens
+package org.kotlens
 
 import com.natpryce.hamkrest.absent
 import com.natpryce.hamkrest.equalTo
