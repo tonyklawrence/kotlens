@@ -1,4 +1,4 @@
-package org.kotlens
+package kotlens
 
 import com.natpryce.hamkrest.absent
 import com.natpryce.hamkrest.equalTo

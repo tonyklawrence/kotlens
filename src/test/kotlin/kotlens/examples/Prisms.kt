@@ -1,17 +1,17 @@
-package org.kotlens.examples
+package kotlens.examples
 
 import com.natpryce.hamkrest.absent
 import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.isA
 import com.natpryce.hamkrest.present
 import com.natpryce.hamkrest.should.shouldMatch
+import kotlens.Prism
+import kotlens.examples.Day.Monday
+import kotlens.examples.Day.Tuesday
+import kotlens.examples.Json.JNumber
+import kotlens.examples.Json.JString
+import kotlens.toIntOption
 import org.junit.Test
-import org.kotlens.Prism
-import org.kotlens.examples.Day.Monday
-import org.kotlens.examples.Day.Tuesday
-import org.kotlens.examples.Json.JNumber
-import org.kotlens.examples.Json.JString
-import org.kotlens.toIntOption
 
 class Prisms {
 

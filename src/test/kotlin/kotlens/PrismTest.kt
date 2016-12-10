@@ -1,10 +1,9 @@
-package org.kotlens
+package kotlens
 
 import com.natpryce.hamkrest.absent
 import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.should.shouldMatch
 import org.junit.Test
-import org.kotlens.Kotlens.compose
 
 class PrismTest {
     val prism = Prism(String::toIntOption, Int::toString)

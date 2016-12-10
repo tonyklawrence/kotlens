@@ -1,4 +1,4 @@
-package org.kotlens
+package kotlens
 
 data class Iso<S, A>(val get: (S) -> A, val reverseGet: (A) -> S) {
     fun modify(f: (A) -> A): (S) -> S = { s -> reverseGet(f(get(s))) }

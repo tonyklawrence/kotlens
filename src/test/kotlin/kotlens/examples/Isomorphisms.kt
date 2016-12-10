@@ -1,9 +1,9 @@
-package org.kotlens.examples
+package kotlens.examples
 
+import kotlens.Iso
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
-import org.kotlens.Iso
 
 data class Meter(val value: Double)
 data class Yard(val value: Double)

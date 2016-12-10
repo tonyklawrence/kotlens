@@ -1,10 +1,10 @@
-package org.kotlens
+package kotlens
 
 import com.natpryce.hamkrest.absent
 import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.should.shouldMatch
+import kotlens.Kotlens.compose
 import org.junit.Test
-import org.kotlens.Kotlens.compose
 
 class CompositionTest {
 
