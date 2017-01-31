@@ -11,9 +11,9 @@ data class Kilometer(val value: Double)
 data class Mile(val value: Double)
 
 class Isomorphisms {
-    val meterToYard = Iso<Meter, Yard>({ (m) -> Yard(m * 1.09361) }, { (y) -> Meter(y / 1.09361) })
-    val meterToKm = Iso<Meter, Kilometer>({ (m) -> Kilometer(m * 1000) }, { (km) -> Meter(km / 1000) })
-    val yardToMile = Iso<Yard, Mile>({ (y) -> Mile(y / 1760) }, { (m) -> Yard(m * 1760) })
+    val meterToYard = Iso<Meter, Yard>({ Yard(it.value * 1.09361) }, { Meter(it.value / 1.09361) })
+    val meterToKm = Iso<Meter, Kilometer>({ Kilometer(it.value * 1000) }, { Meter(it.value / 1000) })
+    val yardToMile = Iso<Yard, Mile>({ Mile(it.value / 1760) }, { Yard(it.value * 1760) })
 
     @Test fun `composing isomorphisms`() {
         val kmToMile = meterToKm.reverse() compose meterToYard compose yardToMile

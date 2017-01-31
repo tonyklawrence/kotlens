@@ -12,7 +12,7 @@ class LensTest {
     val mrTickle = Person("Mr Tickle", 34, tickleTown)
 
     @Test fun `lenses`() {
-        val age = Lens<Person, Int>({ (_, age) -> age }, { age, person -> person.copy(age = age) })
+        val age = Lens<Person, Int>({ it.age }, { age, person -> person.copy(age = age) })
 
         age.get(mrTickle) shouldMatch equalTo(34)
         age.set(100, mrTickle) shouldMatch equalTo(Person("Mr Tickle", 100, tickleTown))
@@ -20,8 +20,8 @@ class LensTest {
     }
 
     @Test fun `composing lenses`() {
-        val address = Lens<Person, Address>({ (_, _, address) -> address }, { address, person -> person.copy(address = address) })
-        val street = Lens<Address, String>({ (_, street) -> street }, { street, address -> address.copy(street = street) })
+        val address = Lens<Person, Address>({ it.address }, { address, person -> person.copy(address = address) })
+        val street = Lens<Address, String>({ it.street }, { street, address -> address.copy(street = street) })
 
         (address compose street).get(mrTickle) shouldMatch equalTo("Tickle Town")
         (address compose street).set("FunnyVille", mrTickle) shouldMatch equalTo(Person("Mr Tickle", 34, Address(72, "FunnyVille")))
