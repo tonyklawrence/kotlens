@@ -16,10 +16,14 @@ apply plugin: 'kotlin'
 sourceSets { laws }
 
 task laws(type: Test) {
+  group = 'verification'
   description = "Check all optics adhere to their laws"
   testClassesDir = project.sourceSets.laws.output.classesDir
   classpath = project.sourceSets.laws.runtimeClasspath
 }
+
+check.dependsOn laws
+laws.mustRunAfter test
 
 repositories { jcenter(); mavenCentral() }
 
