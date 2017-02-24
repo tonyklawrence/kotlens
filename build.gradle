@@ -13,7 +13,10 @@ buildscript {
 
 apply plugin: 'kotlin'
 
-sourceSets { laws }
+sourceSets { laws {
+  compileClasspath += main.output
+  runtimeClasspath += main.output
+} }
 
 task laws(type: Test) {
   group = 'verification'
