@@ -18,4 +18,25 @@ class IsoLaws : StringSpec() { init {
             (iso.reverse() compose iso).get(a) == a
         })
     }
+
+    "Modify with identity" {
+        forAll { s: String ->
+            iso.modify { a -> a }(s) == s
+        }
+    }
+
+    "Modify can compose" {
+        // does this exist in stdlib?
+        infix fun<V, T, R> Function1<T, R>.compose(before: (V) -> T): (V) -> R {
+            return { v: V -> this(before(v)) }
+        }
+
+        // we need generators for these functions
+        val f = { a: List<Char> -> a.map { it + 1 } }
+        val g = { a: List<Char> -> a.map { it - 2 } }
+
+        forAll { s: String ->
+            iso.modify(f)(iso.modify(g)(s)) == iso.modify(g compose f)(s)
+        }
+    }
 }}

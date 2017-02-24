@@ -16,10 +16,10 @@ class IsoTest {
 
     @Test fun `modification via iso should be the same as without`() {
         val iso = Iso(String::toInt, Int::toString)
-        val f = { n: Int -> n + 1 }
+        val ƒ = { n: Int -> n + 1 }
 
         val x = "10"
-        iso.modify(f)(x) shouldMatch equalTo(iso.reverseGet(f(iso.get(x))))
+        iso.modify(ƒ)(x) shouldMatch equalTo(iso.reverseGet(ƒ(iso.get(x))))
     }
 
     @Test fun `we can reverse an iso`() {
