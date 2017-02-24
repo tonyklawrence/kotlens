@@ -1,6 +1,6 @@
 # kotlens
 
-[![Travis Build Status](https://travis-ci.org/tonyklawrence/kotlens.png?branch=master)](https://travis-ci.org/tonyklawrence/kotlens)
-[![Codeship Buid Status](https://app.codeship.com/projects/f36ec230-8bc0-0134-2e56-2e657cf79bda/status?branch=master)](https://app.codeship.com/projects/184642)
+[![Travis Build Status](https://api.travis-ci.org/tonyklawrence/kotlens.svg)](https://travis-ci.org/tonyklawrence/kotlens)
+[![Current Release Vesion](https://img.shields.io/badge/kotlens-0.1.1-blue.svg)](https://github.com/tonyklawrence/kotlens)
 
 Optics library for Kotlin
