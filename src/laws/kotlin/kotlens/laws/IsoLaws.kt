@@ -31,12 +31,11 @@ class IsoLaws : StringSpec() { init {
             return { v: V -> this(before(v)) }
         }
 
-        // we need generators for these functions
-        val f = { a: List<Char> -> a.map { it + 1 } }
-        val g = { a: List<Char> -> a.map { it - 2 } }
+        val f = { a: List<Char> -> a.filterIndexed { i, c -> i % 3 == 2 } }
+        val g = { a: List<Char> -> a.filterIndexed { i, c -> i % 5 == 0 } }
 
         forAll { s: String ->
-            iso.modify(f)(iso.modify(g)(s)) == iso.modify(g compose f)(s)
+            iso.modify(f)(iso.modify(g)(s)) == iso.modify(f compose g)(s)
         }
     }
 }}
