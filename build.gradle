@@ -14,8 +14,8 @@ buildscript {
 apply plugin: 'kotlin'
 
 sourceSets { laws {
-  compileClasspath += main.output
-  runtimeClasspath += main.output
+  compileClasspath += main.output + test.output
+  runtimeClasspath += main.output + test.output
 } }
 
 task laws(type: Test) {

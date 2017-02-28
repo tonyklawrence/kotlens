@@ -26,11 +26,6 @@ class IsoLaws : StringSpec() { init {
     }
 
     "Modify can compose" {
-        // does this exist in stdlib?
-        infix fun<V, T, R> Function1<T, R>.compose(before: (V) -> T): (V) -> R {
-            return { v: V -> this(before(v)) }
-        }
-
         val f = { a: List<Char> -> a.filterIndexed { i, c -> i % 3 == 2 } }
         val g = { a: List<Char> -> a.filterIndexed { i, c -> i % 5 == 0 } }
 
