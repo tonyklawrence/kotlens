@@ -2,6 +2,7 @@ package kotlens.laws
 
 import funk.compose
 import funk.toIntOption
+import io.kotlintest.properties.forAll
 import io.kotlintest.specs.StringSpec
 import kotlens.Prism
 
