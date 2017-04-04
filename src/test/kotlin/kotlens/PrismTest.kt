@@ -3,6 +3,8 @@ package kotlens
 import com.natpryce.hamkrest.absent
 import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.should.shouldMatch
+import funk.toDoubleOption
+import funk.toIntOption
 import kotlens.Transformers.compose
 import org.junit.Test
 

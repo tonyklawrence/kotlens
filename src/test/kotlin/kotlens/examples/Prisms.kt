@@ -5,12 +5,12 @@ import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.isA
 import com.natpryce.hamkrest.present
 import com.natpryce.hamkrest.should.shouldMatch
+import funk.toIntOption
 import kotlens.Prism
 import kotlens.examples.Day.Monday
 import kotlens.examples.Day.Tuesday
 import kotlens.examples.Json.JNumber
 import kotlens.examples.Json.JString
-import kotlens.toIntOption
 import org.junit.Ignore
 import org.junit.Test
 
