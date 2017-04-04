@@ -4,6 +4,10 @@ import funk.compose
 import io.kotlintest.specs.StringSpec
 import kotlens.Prism
 
+fun String.toIntOption(): Int? = Try { toInt() }.toOption()
+private class Try<out T>(val ƒ: () -> T) {
+    fun toOption(): T? = try { ƒ() } catch (t: Throwable) { null }
+}
 class PrismLaws : StringSpec() { init {
     val prism = Prism(String::toIntOption, Int::toString)
 
