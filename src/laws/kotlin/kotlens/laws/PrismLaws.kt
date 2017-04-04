@@ -1,8 +1,8 @@
 package kotlens.laws
 
+import funk.compose
 import io.kotlintest.specs.StringSpec
 import kotlens.Prism
-import kotlens.toIntOption
 
 class PrismLaws : StringSpec() { init {
     val prism = Prism(String::toIntOption, Int::toString)

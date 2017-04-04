@@ -1,5 +1,6 @@
 package kotlens.laws
 
+import funk.compose
 import io.kotlintest.properties.Gen
 import io.kotlintest.specs.StringSpec
 import kotlens.Iso
