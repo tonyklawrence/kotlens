@@ -8,7 +8,7 @@ Optics library for Kotlin
 
 ### Gradle
 ```groovy
-compile 'com.tonylawrence:kotlens:0.2.0'
+compile 'com.tonylawrence:kotlens:0.2.1'
 ```
 
 ### Maven
@@ -16,7 +16,7 @@ compile 'com.tonylawrence:kotlens:0.2.0'
 <dependency>
     <groupId>com.tonylawrence</groupId>
     <artifactId>kotlens</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
 </dependency>
 ```
 
